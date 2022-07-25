@@ -1,22 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import { useState } from "react";
+import HomePage from "./Pages/HomePage";
+
+const urlEndpoint = process.env.REACT_APP_URL_ENDPOINT;
 
 function App() {
+  const [clientMessage, setClientMessage] = useState("");
+  const [serverMessage, setServerMessage] = useState("");
+
+  const sendReceiveMessage = async () => {
+    const response = await fetch(`${urlEndpoint}/post-message`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        clientMessage,
+      }),
+    });
+    const responseJSON = await response.json();
+    setServerMessage(responseJSON.serverMessage);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Routes>
+          <Route
+            index
+            element={
+              <HomePage
+                clientMessage={clientMessage}
+                setClientMessage={setClientMessage}
+                serverMessage={serverMessage}
+                sendReceiveMessage={sendReceiveMessage}
+              />
+            }
+          />
+        </Routes>
       </header>
     </div>
   );
