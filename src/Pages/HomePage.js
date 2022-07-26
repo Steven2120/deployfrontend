@@ -8,7 +8,7 @@ const HomePage = ({
 }) => {
   return (
     <div>
-      <div>{clientMessage}</div>
+      {/* <div>{clientMessage}</div> */}
       <div>{serverMessage}</div>
 
       <label>Input:</label>
