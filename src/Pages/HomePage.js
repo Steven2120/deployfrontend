@@ -8,19 +8,18 @@ const HomePage = ({
 }) => {
   return (
     <div>
-      {/* <div>{clientMessage}</div> */}
-      <div>{serverMessage}</div>
+      <div>Client: {clientMessage}</div>
+      <div>Server: {serverMessage}</div>
 
       <label>Input:</label>
       <input
         type="text"
-        value={clientMessage}
         onChange={(event) => {
-          const newClientMessage = event.target.value;
           const dateTime = new Date();
-          setClientMessage(
-            `Message: ${newClientMessage} at time ${dateTime.toString()}`
-          );
+          const newClientMessage = `Message: ${
+            event.target.value
+          } at time ${dateTime.toString()}`;
+          setClientMessage(newClientMessage);
         }}
       ></input>
       <br></br>
@@ -29,7 +28,7 @@ const HomePage = ({
       <button
         id="send"
         type="submit"
-        onClick={async () => {
+        onClick={(event) => {
           sendReceiveMessage();
         }}
       >

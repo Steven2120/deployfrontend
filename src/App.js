@@ -10,14 +10,13 @@ function App() {
   const [serverMessage, setServerMessage] = useState("");
 
   const sendReceiveMessage = async () => {
+    console.log("client message: ", clientMessage);
     const response = await fetch(`${urlEndpoint}/post-message`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        clientMessage,
-      }),
+      body: JSON.stringify({ clientMessage }),
     });
     const responseJSON = await response.json();
     setServerMessage(responseJSON.serverMessage);
