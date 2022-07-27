@@ -1,9 +1,12 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import HomePage from "./Pages/HomePage";
+
 import PostUser from "./Pages/PostUser";
+import { useEffect } from "react";
+
 const urlEndpoint = process.env.REACT_APP_URL_ENDPOINT;
 
 function App() {
@@ -12,7 +15,6 @@ function App() {
   const [userList, setUserList] = useState([]);
 
   const sendReceiveMessage = async () => {
-    console.log("client message: ", clientMessage);
     const response = await fetch(`${urlEndpoint}/post-message`, {
       method: "POST",
       headers: {
@@ -30,7 +32,7 @@ function App() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ userData }),
+      body: JSON.stringify(userData),
     });
     const responseJSON = await response.json();
     return responseJSON;
@@ -58,6 +60,7 @@ function App() {
                 setClientMessage={setClientMessage}
                 serverMessage={serverMessage}
                 sendReceiveMessage={sendReceiveMessage}
+                userList={userList}
               />
             }
           />
