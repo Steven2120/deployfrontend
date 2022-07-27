@@ -12,11 +12,10 @@ const HomePage = ({
     <div>
       <div>Client: {clientMessage}</div>
       <div>Server: {serverMessage}</div>
-      {/* map function to iterate through userlist state variable, should return first name, last name, email of each user */}
       {userList.map((user) => {
         // sendReceiveMessage();
         return (
-          <div className="users">
+          <div className="users" key={user.id}>
             <strong>{user.id}</strong>
             <p>{user.firstName}</p>
             <p>{user.lastName}</p>

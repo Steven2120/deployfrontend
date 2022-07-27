@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./PostUser.css";
 
 const PostUser = ({ postUserData }) => {
   const [firstName, setFirstName] = useState("");
